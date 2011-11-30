@@ -13,21 +13,23 @@ public class Main {
 		BufferedReader lectureFichier = null;
 		String url="";
 		String ligne;
+		boolean fichierLu = false;
 		
-		System.out.println("Lien Url vers votre fichier : ");
-		url=sc.nextLine();
-		
-		try{
-			lectureFichier = new BufferedReader(new FileReader(url));
-			while ((ligne = lectureFichier.readLine()) != null){
-				System.out.println(ligne);
-				
+		while(!fichierLu){
+			System.out.println("Lien Url vers votre fichier : ");
+			url=sc.nextLine();
+			try{
+				lectureFichier = new BufferedReader(new FileReader(url));
+				while ((ligne = lectureFichier.readLine()) != null){
+					System.out.println(ligne);
+					
+				}
+				lectureFichier.close();
+				fichierLu = true;
 			}
-			lectureFichier.close();
-
-		}
-		catch(Exception e){
-		
+			catch(Exception e){
+				System.out.println("Le Fichier n'existe pas !");
+			}
 		}
 	}
 

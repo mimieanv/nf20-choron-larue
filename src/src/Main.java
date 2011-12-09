@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Main {
-
+	 
 	/**
 	 * @param args
 	 */
@@ -18,13 +18,25 @@ public class Main {
 		while(!fichierLu){
 			System.out.println("Lien Url vers votre fichier : ");
 			url=sc.nextLine();
+			
+			String toto="";
 			try{
 				lectureFichier = new BufferedReader(new FileReader(url));
 				while ((ligne = lectureFichier.readLine()) != null){
-					System.out.println(ligne);
+					toto += ligne;
 					
 				}
+				
 				lectureFichier.close();
+				System.out.println(toto);
+				toto = toto.replaceAll(" ","");
+				//toto = toto.replace('')
+				System.out.println(toto);
+				String tableau[] = toto.split("/");
+				for(int i=0; i< tableau.length; i++){
+					System.out.println(tableau[i]+"-");
+				}
+				
 				fichierLu = true;
 			}
 			catch(Exception e){

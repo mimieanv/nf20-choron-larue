@@ -8,12 +8,17 @@ public class Main {
 	/**
 	 * @param args
 	 */
+
+	
 	public static void main(String[] args) {
+		ArrayList<Arc> listArc = new ArrayList<Arc>();
+		ArrayList<Node> listNode = new ArrayList<Node>();
 		Scanner sc = new Scanner(System.in);
 		BufferedReader lectureFichier = null;
 		String url="";
 		String ligne;
 		boolean fichierLu = false;
+		
 		
 		while(!fichierLu){
 			//System.out.println("Lien Url vers votre fichier : ");
@@ -36,9 +41,7 @@ public class Main {
 				int nbrNodes = 0;
 				int nbrArcs = 0;
 				int indiceDepart =0;
-				ArrayList<Arc> listArc = new ArrayList<Arc>();
-				ArrayList<Node> listNode = new ArrayList<Node>();
-				
+			
 				
 				for(int i=0; i< tableau.length; i++){
 					if(tableau[i].equalsIgnoreCase("nb_nodes")){
@@ -62,7 +65,7 @@ public class Main {
 						break;
 					}
 					//Tout les 3 elements
-					if((j-indiceDepart)%3 == 0){
+					if((j-indiceDepart)%3 == 0 || j-indiceDepart == 0){
 						//on crée un nouvel arc(node depart, node Arrivé, int cost)
 						//On l'ajoute à la listeArc
 						listArc.add(new Arc(listNode.get(Integer.parseInt(tableau[j])),listNode.get(Integer.parseInt(tableau[j+1])),Integer.parseInt(tableau[j+2])));
@@ -77,6 +80,9 @@ public class Main {
 			}
 		}
 		
+		for(Arc monArc : listArc){
+			System.out.println(monArc.toString());
+		}
 		
 	}
 

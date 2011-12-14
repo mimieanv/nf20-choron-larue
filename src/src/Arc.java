@@ -36,7 +36,7 @@ public class Arc {
 	
 	public String toString(){
 		String res = "";
-		res+="noeud de depart : " + startNode + " noeud d'arrivé : " + endNode +" cout : " + cost;
+		res+="noeud de depart : " + startNode.getNumber() + " noeud d'arrivé : " + endNode.getNumber() +" cout : " + cost;
 		
 		return res;
 	}

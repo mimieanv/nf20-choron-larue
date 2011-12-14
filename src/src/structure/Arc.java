@@ -6,6 +6,7 @@ public class Arc {
 	private Node endNode;
 	private int cost;
 	
+	
 	public Arc(Node _startNode, Node _endNode, int _cost){
 		startNode = _startNode;
 		endNode = _endNode;

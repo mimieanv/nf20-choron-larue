@@ -1,3 +1,6 @@
+package Algos;
+import structure.Graph;
+
 public class Dijkstra {
 	
 	public Dijkstra() {

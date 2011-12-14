@@ -34,4 +34,11 @@ public class Arc {
 		this.cost = cost;
 	}
 	
+	public String toString(){
+		String res = "";
+		res+="noeud de depart : " + startNode + " noeud d'arrivé : " + endNode +" cout : " + cost;
+		
+		return res;
+	}
+	
 }

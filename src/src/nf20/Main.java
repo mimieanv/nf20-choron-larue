@@ -1,7 +1,12 @@
+package nf20;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import structure.Arc;
+import structure.Graph;
+import structure.Node;
 
 public class Main {
 	 

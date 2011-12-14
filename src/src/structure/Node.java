@@ -1,3 +1,4 @@
+package structure;
 
 public class Node {
 	private int number;

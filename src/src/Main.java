@@ -11,12 +11,13 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-		ArrayList<Arc> listArc = new ArrayList<Arc>();
-		ArrayList<Node> listNode = new ArrayList<Node>();
+		ArrayList<Arc> listArc		= new ArrayList<Arc>();
+		ArrayList<Node> listNode	= new ArrayList<Node>();
 		Scanner sc = new Scanner(System.in);
 		BufferedReader lectureFichier = null;
 		String url="";
 		String ligne;
+		Graph graphe;
 		boolean fichierLu = false;
 		
 		
@@ -72,8 +73,12 @@ public class Main {
 					}
 									
 				}
-				
 				fichierLu = true;
+				
+				// On "définit" le graphe
+				graphe = new Graph();
+				graphe.setListArc(listArc);
+				graphe.setListNode(listNode);
 			}
 			catch(Exception e){
 				System.out.println("Le Fichier n'existe pas !");

@@ -43,7 +43,10 @@ public class Main {
 				fichier = fichier.replaceAll(" ","");
 				fichier = fichier.replaceAll("-","/");
 				fichier = fichier.replaceAll("\t","/");
+				fichier = fichier.replaceAll("//","/");
+
 				String tableau[] = fichier.split("/");
+				
 				int nbrNodes = 0;
 				int nbrArcs = 0;
 				int indiceDepart =0;
@@ -52,11 +55,13 @@ public class Main {
 				for(int i=0; i< tableau.length; i++){
 					if(tableau[i].equalsIgnoreCase("nb_nodes")){
 						nbrNodes = Integer.parseInt(tableau[i+1]);
+						
 					}
 					else if(tableau[i].equalsIgnoreCase("nb_arcs")){
 						nbrArcs = Integer.parseInt(tableau[i+1]);
+						
 					}
-					else if(tableau[i].startsWith("LIST")){
+					else if(tableau[i].endsWith("COSTS") || tableau[i].endsWith("COST")){
 						indiceDepart = i+1;
 					}
 				}

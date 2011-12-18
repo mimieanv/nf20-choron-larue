@@ -7,7 +7,7 @@ public class Node {
 	
 	// variables utilisées par Dijkstra
 	private int parcouru;
-	private int precedent;
+	private Node precedent;
 	
 	public Node(int _number) {
 		number = _number;
@@ -45,6 +45,32 @@ public class Node {
 		return listeFistons;
 	}
 	
+	/**
+	 * Retourne la distance correspond au poids de l'arc reliant n1 (this) et n2
+	 * @return
+	 */
+	public int distance(Node _n2) {
+		Arc arcReliant = null;
+		int cost;
+
+		for (Arc arc : Graph.getInstance().getListArc()) {
+			if ( (arc.getStartNode().getNumber() == this.getNumber()
+						&& arc.getEndNode().getNumber() == _n2.getNumber())
+				|| (arc.getStartNode().getNumber() == _n2.getNumber()
+						&& arc.getEndNode().getNumber() == this.getNumber()) )
+				arcReliant = arc;
+				break;
+		}
+		
+		if(arcReliant != null)
+			cost = arcReliant.getCost();
+		else
+			cost = 0;
+		
+		return cost;
+	}
+
+	
 /***************************
  **** GETTERS / SETTERS ****
  ***************************/
@@ -65,11 +91,11 @@ public class Node {
 		this.parcouru = _parcouru;
 	}
 	
-	public int getPrecedent() {
+	public Node getPrecedent() {
 		return precedent;
 	}
 	
-	public void setPrecedent(int _precedent) {
+	public void setPrecedent(Node _precedent) {
 		this.precedent = _precedent;
 	}
 	

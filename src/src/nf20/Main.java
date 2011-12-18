@@ -86,13 +86,18 @@ public class Main {
 				fichierLu = true;
 				
 				// On "définit" le graphe
-				graphe = new Graph();
+				graphe = Graph.getInstance();
+				
+				graphe.setNbNodes(nbrNodes);
+				graphe.setNbArcs(nbrArcs);
+				
 				graphe.setListArc(listArc);
 				graphe.setListNode(listNode);
 			}
 			catch(Exception e){
 				System.out.println("Le Fichier n'existe pas !");
 			}
+			
 		}
 		
 		for(Arc monArc : listArc){

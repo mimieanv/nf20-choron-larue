@@ -16,7 +16,7 @@ public class Dijkstra {
 	private Graph graphe;
 	int nbArcs;
 	
-	public Dijkstra(Graph _graphe) {
+/*	public Dijkstra(Graph _graphe) {
 		graphe = _graphe;
 		int nbArcs = _graphe.getNbArcs();
 
@@ -28,7 +28,9 @@ public class Dijkstra {
 		distance[1] = 0;
 		pere[1]		= 0;
 	}
-	
+*/
+
+/*
 	public int dijkstraAlgoProf(int _s) {
 		for (int i=0; i <= nbArcs; i++) {
 			int min = -1;	// -1 <==> + infini
@@ -39,47 +41,65 @@ public class Dijkstra {
 		
 		return 0;
 	}
+*/
 	
-	public int dijkstraAlgoWikipedia(fils, distance, debut, fin) {
+	public ArrayList<Node> dijkstraAlgoWikipedia(Node _startNode, Node _endNode) {
 		for (Node node : graphe.getListNode()) {
 	         node.setParcouru(-1);
-	         node.setPrecedent(0);
+	         node.setPrecedent(null);
 		}
 			
-			startNode.setParcouru(0);
-			ArrayList<Node> pasEncoreVu = graphe.getListNode();
+		_startNode.setParcouru(0);
+		ArrayList<Node> pasEncoreVu = graphe.getListNode();
+		ArrayList<Node> chemin = new ArrayList<Node>();
+		
+		while(!pasEncoreVu.isEmpty()) {
+			int indexNode = minimum(pasEncoreVu);
+			Node node = pasEncoreVu.get(indexNode);
+			pasEncoreVu.remove(indexNode);
 			
-			while(!pasEncoreVu.isEmpty()) {
-				int indexNode = minimum(pasEncoreVu);
-				pasEncoreVu.remove(indexNode);
-				
-				for (Node fils : node.getFistons()) {
-					
+			for (Node fils : node.getFistons()) {
+				if(fils.getParcouru() > (node.getParcouru() + node.distance(fils))) {
+					fils.setParcouru (node.getParcouru() + node.distance(fils));
+					fils.setPrecedent(node);
 				}
 			}
+		}
+		
+		Node lastNode = _endNode;
+		
+		while(lastNode != _startNode) {
+			chemin.add(0, lastNode);
+			lastNode = lastNode.getPrecedent();
+		}
+		
+		chemin.add(0, _endNode);
+		
+		return chemin;
 			
-			
-			
-		    Tant que pasEncoreVu != liste vide
-		        n1 = minimum(pasEncoreVu)   // Le nœud dans pasEncoreVu avec parcouru le plus petit
-		        pasEncoreVu.enlever(n1)
-		        Pour n2 parcourant fils(n1)   // Les nœuds reliés à n1 par un arc
-		    
-		            Si n2.parcouru > n1.parcouru + distance(n1, n2)   // distance correspond au poids de l'arc reliant n1 et n2
-		                n2.parcouru = n1.parcouru + distance(n1, n2)
-		                n2.précédent = n1   // Dit que pour aller à n2, il faut passer par n1
-		            Fin si
-		        Fin pour
-		    Fin tant que
-		    chemin = liste vide
-		    n = fin
-		    Tant que n != début
-		        chemin.ajouterAvant(n)
-		        n = n.précédent
-		    Fin tant que
-		    chemin.ajouterAvant(fin)
-		    Retourner chemin
-		Fin fonction Dijkstra
+		/*
+	    Tant que pasEncoreVu != liste vide
+	        n1 = minimum(pasEncoreVu)   // Le nœud dans pasEncoreVu avec parcouru le plus petit
+	        pasEncoreVu.enlever(n1)
+	        Pour n2 parcourant fils(n1)   // Les nœuds reliés à n1 par un arc
+	            Si n2.parcouru > n1.parcouru + distance(n1, n2)   // distance correspond au poids de l'arc reliant n1 et n2
+	                n2.parcouru = n1.parcouru + distance(n1, n2)
+	                n2.précédent = n1   // Dit que pour aller à n2, il faut passer par n1
+	            Fin si
+	        Fin pour
+	    Fin tant que
+	    
+	    chemin = liste vide
+	    n = fin
+	    Tant que n != début
+	        chemin.ajouterAvant(n)
+	        n = n.précédent
+	    Fin tant que
+	    chemin.ajouterAvant(fin)
+	    Retourner chemin
+	Fin fonction Dijkstra
+	*/
+		
 	}
 	
 	/**
@@ -93,7 +113,7 @@ public class Dijkstra {
 			if(node.getParcouru() < i)
 				i = node.getParcouru();
 		}
-		// retourner l'index du node avec i le plus petit
+		//TODO retourner l'index du node avec i le plus petit
 	}
 	
 	/*

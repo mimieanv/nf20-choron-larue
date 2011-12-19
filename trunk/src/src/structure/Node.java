@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Node {
 	private int number;
 	
-	// variables utilisŽes par Dijkstra
+	// variables utilisï¿½es par Dijkstra
 	private int parcouru;
 	private Node precedent;
 	
@@ -14,7 +14,7 @@ public class Node {
 	}
 	
 	/**
-	 * DANS LE CAS D'UN GRAPHE NON ORIENTƒ - Retourne un ArrayList contenant tous les fils du sommet
+	 * DANS LE CAS D'UN GRAPHE NON ORIENTE - Retourne un ArrayList contenant tous les fils du sommet
 	 * @return ArrayList<Node>
 	 */
 	public ArrayList<Node> getFistons() {
@@ -31,10 +31,10 @@ public class Node {
 	}
 	
 	/**
-	 * DANS LE CAS D'UN GRAPHE ORIENTƒ - Retourne un ArrayList contenant tous les fils du sommet
+	 * DANS LE CAS D'UN GRAPHE ORIENTE - Retourne un ArrayList contenant tous les fils du sommet
 	 * @return ArrayList<Node>
 	 */
-	public ArrayList<Node> getFistonsOrientŽ() {
+	public ArrayList<Node> getFistonsOriente() {
 		ArrayList<Node> listeFistons = new ArrayList<Node>();
 		
 		for(Arc arc : Graph.getInstance().getListArc()) {

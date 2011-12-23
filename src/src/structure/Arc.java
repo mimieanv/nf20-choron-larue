@@ -8,9 +8,9 @@ public class Arc {
 	
 	
 	public Arc(Node _startNode, Node _endNode, int _cost){
-		startNode = _startNode;
-		endNode = _endNode;
-		cost = _cost;
+		startNode	= _startNode;
+		endNode		= _endNode;
+		cost		= _cost;
 	}
 	
 /***************************
@@ -44,7 +44,7 @@ public class Arc {
 	
 	public String toString(){
 		String res = "";
-		res+="noeud de depart : " + startNode.getNumber() + " noeud d'arrivé : " + endNode.getNumber() +" cout : " + cost;
+		res += "noeud de depart : " + startNode.getNumber() + " noeud d'arrivï¿½ : " + endNode.getNumber() + " cout : " + cost;
 		
 		return res;
 	}

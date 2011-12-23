@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Node {
 	private int number;
 	
-	// variables utilis�es par Dijkstra
+	// Variables utilisees par Dijkstra
 	private int parcouru;
 	private Node precedent;
 	

@@ -3,7 +3,6 @@ package nf20;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Algos.Dijkstra;
 import structure.*;
@@ -81,15 +80,15 @@ public class Main {
 					}
 					//Tous les 3 elements
 					if((j-indiceDepart)%3 == 0 || j-indiceDepart == 0){
-						//on crée un nouvel arc(node depart, node Arrivé, int cost)
-						//On l'ajoute à la listeArc
+						//on crï¿½e un nouvel arc(node depart, node Arrivï¿½, int cost)
+						//On l'ajoute ï¿½ la listeArc
 						listArc.add(new Arc(listNode.get(Integer.parseInt(tableau[j])),listNode.get(Integer.parseInt(tableau[j+1])),Integer.parseInt(tableau[j+2])));
 					}
 									
 				}
 				fichierLu = true;
 				
-				// On "dŽfinit" le graphe
+				// On "definit" le graphe
 				graphe = Graph.getInstance();
 				
 				graphe.setNbNodes(nbNodes);
@@ -98,7 +97,7 @@ public class Main {
 				graphe.setListArc(listArc);
 				graphe.setListNode(listNode);
 			}
-			catch(Exception e){
+			catch(Exception e) {
 				System.out.println("Le Fichier n'existe pas !");
 			}
 			

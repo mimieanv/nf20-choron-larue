@@ -51,7 +51,7 @@ public class Dijkstra {
 			}
 		}
 
-		Node lastNode = _endNode;
+		Node lastNode = ;
 		/* DEBUG */
 			if(deboguer) System.out.println("lastNode : " + lastNode);
 		/* DEBUG */

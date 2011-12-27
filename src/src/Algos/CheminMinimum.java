@@ -3,12 +3,12 @@ package Algos;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
-public class CheminMinimumBellman {
+public class CheminMinimum {
 
 	private LinkedList<Integer> NodeList = new LinkedList<Integer>();
 
 
-	public void updateList(CheminMinimumBellman nouveauChemin, int sommetArrive) {
+	public void updateList(CheminMinimum nouveauChemin, int sommetArrive) {
 		
 		NodeList.clear();
 		LinkedList<Integer> newList = nouveauChemin.getNodeList();

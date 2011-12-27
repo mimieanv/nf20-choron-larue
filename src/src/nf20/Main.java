@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import structure.Arc;
+import structure.Graph;
+import structure.Node;
+import Algos.Bellman;
 import Algos.Dijkstra;
-import structure.*;
 
 public class Main {
 	 
@@ -18,7 +21,7 @@ public class Main {
 		ArrayList<Arc> listArc		= new ArrayList<Arc>();
 		ArrayList<Node> listNode	= new ArrayList<Node>();
 		
-		Graph graphe;
+		Graph graphe=null;
 		Dijkstra dijkstra;
 		
 		//Scanner sc = new Scanner(System.in);
@@ -31,8 +34,11 @@ public class Main {
 		while(!fichierLu){
 			//System.out.println("Lien Url vers votre fichier : ");
 			//url=sc.nextLine();
+
+			url="C:\\Users\\N33d-W33d\\Desktop\\jeux_d_essai\\check_v5_s2.dat";			
 			//url="C:\\Users\\N33d-W33d\\Documents\\eclipse\\eclipse\\workspace\\nf20-choron-larue\\instance_PCC.dat";
-			url = "D:\\COURS\\LO02\\CrazyEights\\nf20-choron-larue\\instance_PCC.dat";
+			//url = "D:\\COURS\\LO02\\CrazyEights\\nf20-choron-larue\\instance_PCC.dat";
+
 			
 			String fichier="";
 			try{
@@ -103,17 +109,31 @@ public class Main {
 			
 		}
 		
-		for(Arc monArc : listArc){
+		/*for(Arc monArc : listArc){
 			System.out.println(monArc.toString());
-		}
+		}*/
 		
 		/*
 		 * TEST DIJKSTRA
 		 */
-		graphe = Graph.getInstance();
-		dijkstra = new Dijkstra(Graph.getInstance());
-		System.out.println(dijkstra.algoWikipedia(graphe.getListNode().get(1), graphe.getListNode().get(graphe.getNbNodes() -1)));
+		//graphe = Graph.getInstance();
+		//dijkstra = new Dijkstra(Graph.getInstance());
+		//System.out.println(dijkstra.algoWikipedia(graphe.getListNode().get(1), graphe.getListNode().get(graphe.getNbNodes() -1)));
 		
+		/*
+		 * TEST BELLMAN
+		 * */
+		
+		Bellman belmann = new Bellman(0, graphe);
+		
+		if(belmann.algoBellman()) {
+			
+			belmann.afficher();
+			
+		}
+		else{
+			System.out.println("Impossible de faire l'algorithme de Bellman car il y a un cycle absorbant");
+		}
 	}
 
 }

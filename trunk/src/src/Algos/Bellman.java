@@ -1,82 +1,79 @@
 package Algos;
 
-import java.util.ArrayList;
-import java.util.List;
+import structure.Arc;
+import structure.Graph;
+
 
 public class Bellman {
-	/**
-	 * La liste des taches utilisé par cette algorithme
-	 */
-	Tache[] taches;
 
+	private int startNode;
+	private Graph graphe;
+	private CoutMinimumBellman[] tabMinCost;
+	private CheminMinimumBellman[] tabChemins;
 	
-	
-	/**
-	 * L'algorithme a besoin pour s'executer de connaitre la liste des taches.
-	 * 
-	 * @param taches
-	 */
-	public Bellman(Tache[] taches) {
-		this.taches = taches;
-	}
-	
-	/**
-	 * Renvoie les temps au plus tot en utilisant l'alorithme de Bellman.
-	 * 
-	 * @param taches
-	 * @return
-	 */
-	public void calculeTempsAuPlusTot() {
-		// cree la tache initiale fictive en lui trouvant pour
-		// successeur toutes les taches qui n'ont pas de prédécesseurs
-		Tache tacheIntiale = GrapheUtil.construitTInitiale(taches);
-		// Cree la tache finale fictive en lui trouvant pour predecesseur
-		// toutes les taches qui n'ont pas de successeur
-		Tache tacheFinale = GrapheUtil.construitTFinale(taches.length, taches);
-		// condition initiale à l'algo on marque T0 et on lui
-		// affecte la date au plus tot nulle
-		tacheIntiale.setMarque(true);
-		tacheIntiale.setTempsAuPlusTot(0);
-		// nonMarque est l'index de la premiere tache non marquee
-		// trouvee si il vaut -1 c'est qu'on ne peut plus en trouver
-		// la boucle s'arrete
-		int nonMarque = GrapheUtil.trouveNonMarqueAvecTousPredecesseursMarque(taches);
-		while (nonMarque != -1) {
-			// on marque la tache traitee
-			taches[nonMarque].setMarque(true);
-			// on calcul son temps au plus tot
-			int tempsAuPlusTot = GrapheUtil
-					.calculTempsAuPlusTot(taches[nonMarque]);
-			// et on le met dans la tache
-			taches[nonMarque].setTempsAuPlusTot(tempsAuPlusTot);
-			// et on continue avec la prochaine tache non marquee suivante
-			nonMarque = GrapheUtil
-					.trouveNonMarqueAvecTousPredecesseursMarque(taches);
+	public Bellman(int startNode, Graph graphe) {
+		this.startNode = startNode;
+		this.graphe = graphe;
+		tabMinCost = new CoutMinimumBellman[graphe.getListNode().size()];
+		for(int i = 0; i<graphe.getListNode().size(); i++) {
+			tabMinCost[i] = new CoutMinimumBellman("infini",startNode);
 		}
-		// on finalise avec la dernière tache
-		int tempsAuPlusTotFinal = GrapheUtil.calculTempsAuPlusTot(tacheFinale);
-		tacheFinale.setTempsAuPlusTot(tempsAuPlusTotFinal);
-	}
 
-	/**
-	 * Renvoie les taches sur le chemin critique cette méthode ne peut etre
-	 * appelé qu'apres l'appel de la méthode {@link #calculeTempsAuPlusTot()}
-	 * 
-	 * @return
-	 */
-	public List<Tache> calculeCheminCritique() {
-		// On intialise le chemin critique
-		List<Tache> cheminCritique = new ArrayList<Tache>();
-		// on ajoute la tache initiale
-		Tache tacheInitale = taches[0].getPredecesseurs().iterator().next();
-		cheminCritique.add(tacheInitale);
-		Tache tacheSurLeChemin = tacheInitale;
-		while ((tacheSurLeChemin = tacheSurLeChemin
-				.getSuccesseurTempsAuPlusTotMax()) != null) {
-			cheminCritique.add(tacheSurLeChemin);
+		tabMinCost[startNode] = new CoutMinimumBellman("0",startNode);
+
+		
+		this.tabChemins = new CheminMinimumBellman[graphe.getListNode().size()];
+		for(int j = 0; j<graphe.getListNode().size(); j++) {
+			tabChemins[j] = new CheminMinimumBellman();
+			tabChemins[j].addNodeToEnd(j);
 		}
-		return cheminCritique;
+		
+	}
+	
+	public boolean algoBellman(){
+		int currentCost;
+		
+		for(int i = 1 ; i< graphe.getListNode().size(); i++){
+			for(Arc a : graphe.getListArc()){
+				if(!tabMinCost[a.getStartNode().getNumber()].getCost().equals("infini")){
+					currentCost = Integer.parseInt(tabMinCost[a.getStartNode().getNumber()].getCost()) + a.getCost();
+					if(tabMinCost[a.getEndNode().getNumber()].getCost().equals("infini") || currentCost < Integer.parseInt(tabMinCost[a.getEndNode().getNumber()].getCost())){
+						tabMinCost[a.getEndNode().getNumber()].setCost(String.valueOf(currentCost));
+						tabMinCost[a.getEndNode().getNumber()].setPredecesseur(a.getStartNode().getNumber());
+					}
+				}
+			}
+		}
+		for(Arc a : graphe.getListArc()){
+			if(!tabMinCost[a.getStartNode().getNumber()].getCost().equals("infini") && Integer.parseInt(tabMinCost[a.getStartNode().getNumber()].getCost()) + a.getCost() < Integer.parseInt(tabMinCost[a.getEndNode().getNumber()].getCost())){
+				return false;
+			}
+		}
+	
+		//Calcul des chemins
+		int sommetTemp;
+		for(int i = 0 ; i < graphe.getNbNodes() ; i++){
+			sommetTemp = i;
+			while(sommetTemp != startNode){
+				tabChemins[i].addNodeToFirst(tabMinCost[sommetTemp].getPredecesseur());
+				sommetTemp = tabMinCost[sommetTemp].getPredecesseur();
+			}
+		}
+		
+		return true;
 	}
 
+	public void afficher() {
+		System.out.println("Resultat de l'algorithme de Bellman : ");
+		System.out.println("(Sommet de départ : " + startNode +")");
+		for(int i = 0; i<graphe.getNbNodes(); i++) {
+			if(i != startNode && !tabMinCost[i].getCost().equals("infini")){
+				System.out.println("Chemin de " + startNode + " vers " + i + " a pour cout minimum " + tabMinCost[i].getCost() + "\t " + tabChemins[i]);
+			}
+			else if(tabMinCost[i].getCost().equals("infini")){
+				System.out.println("Chemin de " + startNode + " vers " + i + " est impossible");
+			}
+		}
+	}
 	
 }

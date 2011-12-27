@@ -9,7 +9,7 @@ public class Bellman {
 	private int startNode;
 	private Graph graphe;
 	private CoutMinimumBellman[] tabMinCost;
-	private CheminMinimumBellman[] tabChemins;
+	private CheminMinimum[] tabChemins;
 	
 	public Bellman(int startNode, Graph graphe) {
 		this.startNode = startNode;
@@ -22,9 +22,9 @@ public class Bellman {
 		tabMinCost[startNode] = new CoutMinimumBellman("0",startNode);
 
 		
-		this.tabChemins = new CheminMinimumBellman[graphe.getListNode().size()];
+		this.tabChemins = new CheminMinimum[graphe.getListNode().size()];
 		for(int j = 0; j<graphe.getListNode().size(); j++) {
-			tabChemins[j] = new CheminMinimumBellman();
+			tabChemins[j] = new CheminMinimum();
 			tabChemins[j].addNodeToEnd(j);
 		}
 		

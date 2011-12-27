@@ -117,14 +117,14 @@ public class Main {
 		 * TEST DIJKSTRA
 		 */
 		//graphe = Graph.getInstance();
-		//dijkstra = new Dijkstra(Graph.getInstance());
-		//System.out.println(dijkstra.algoWikipedia(graphe.getListNode().get(1), graphe.getListNode().get(graphe.getNbNodes() -1)));
+		dijkstra = new Dijkstra(0,Graph.getInstance());
+		dijkstra.algoWikipedia();
 		
 		/*
 		 * TEST BELLMAN
 		 * */
 		
-		Bellman belmann = new Bellman(0, graphe);
+		/*Bellman belmann = new Bellman(0, graphe);
 		
 		if(belmann.algoBellman()) {
 			
@@ -133,7 +133,7 @@ public class Main {
 		}
 		else{
 			System.out.println("Impossible de faire l'algorithme de Bellman car il y a un cycle absorbant");
-		}
+		}*/
 	}
 
 }

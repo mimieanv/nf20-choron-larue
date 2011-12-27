@@ -7,13 +7,15 @@ import structure.*;
 public class Dijkstra {
 
 	private Graph graphe;
-	int nbArcs;
+	private int startNode;
 
-	public Dijkstra(Graph _graphe) {
+	
+	public Dijkstra(int startNode, Graph _graphe) {
+		this.startNode=startNode;
 		graphe = _graphe;
 	}
 
-	public ArrayList<Node> algoWikipedia(Node _startNode, Node _endNode) {
+	public ArrayList<Node> algoWikipedia() {
 		boolean deboguer = true;
 		
 		for (Node node : graphe.getListNode()) {
@@ -21,7 +23,7 @@ public class Dijkstra {
 			node.setPrecedent(null);
 		}
 
-		_startNode.setParcouru(0);
+		startNode.setParcouru(0);
 		ArrayList<Node> pasEncoreVu	= graphe.getListNode();
 		ArrayList<Node> chemin		= new ArrayList<Node>();
 

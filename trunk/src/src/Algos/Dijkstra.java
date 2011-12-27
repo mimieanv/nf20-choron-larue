@@ -7,12 +7,17 @@ import structure.*;
 public class Dijkstra {
 
 	private Graph graphe;
-	private int startNode;
+	private Node startNode;
 
 	
-	public Dijkstra(int startNode, Graph _graphe) {
-		this.startNode=startNode;
+	public Dijkstra(int _startNodeNb, Graph _graphe) {
 		graphe = _graphe;
+		for (Node node : graphe.getListNode()) {
+			if(node.getNumber() == _startNodeNb) {
+				this.startNode = node;
+				break;
+			}
+		}
 	}
 
 	public ArrayList<Node> algoWikipedia() {
@@ -51,7 +56,7 @@ public class Dijkstra {
 			if(deboguer) System.out.println("lastNode : " + lastNode);
 		/* DEBUG */
 
-		while (lastNode != _startNode) {
+		while (lastNode != startNode) {
 			chemin.add(0, lastNode);
 			lastNode = lastNode.getPrecedent(); 	// TODO BUG ICI ! <!> UN NODE N'A PAS FORCEMENT DE PRECEDENT...? <!>
 			/* DEBUG */

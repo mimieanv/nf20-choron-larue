@@ -9,7 +9,7 @@ public class Bellman {
 	private int startNode;
 	private Graph graphe;
 	private CoutMinimumBellman[] tabMinCost;
-	private CheminMinimum[] tabChemins;
+	private CheminMinimum[] tabCheminMini;
 	
 	public Bellman(int startNode, Graph graphe) {
 		this.startNode = startNode;
@@ -22,10 +22,10 @@ public class Bellman {
 		tabMinCost[startNode] = new CoutMinimumBellman("0",startNode);
 
 		
-		this.tabChemins = new CheminMinimum[graphe.getListNode().size()];
+		this.tabCheminMini = new CheminMinimum[graphe.getListNode().size()];
 		for(int j = 0; j<graphe.getListNode().size(); j++) {
-			tabChemins[j] = new CheminMinimum();
-			tabChemins[j].addNodeToEnd(j);
+			tabCheminMini[j] = new CheminMinimum();
+			tabCheminMini[j].addNodeToEnd(j);
 		}
 		
 	}
@@ -55,7 +55,7 @@ public class Bellman {
 		for(int i = 0 ; i < graphe.getNbNodes() ; i++){
 			sommetTemp = i;
 			while(sommetTemp != startNode){
-				tabChemins[i].addNodeToFirst(tabMinCost[sommetTemp].getPredecesseur());
+				tabCheminMini[i].addNodeToFirst(tabMinCost[sommetTemp].getPredecesseur());
 				sommetTemp = tabMinCost[sommetTemp].getPredecesseur();
 			}
 		}
@@ -68,7 +68,7 @@ public class Bellman {
 		System.out.println("(Sommet de départ : " + startNode +")");
 		for(int i = 0; i<graphe.getNbNodes(); i++) {
 			if(i != startNode && !tabMinCost[i].getCost().equals("infini")){
-				System.out.println("Chemin de " + startNode + " vers " + i + " a pour cout minimum " + tabMinCost[i].getCost() + "\t " + tabChemins[i]);
+				System.out.println("Chemin de " + startNode + " vers " + i + " a pour cout minimum " + tabMinCost[i].getCost() + "\t " + tabCheminMini[i]);
 			}
 			else if(tabMinCost[i].getCost().equals("infini")){
 				System.out.println("Chemin de " + startNode + " vers " + i + " est impossible");

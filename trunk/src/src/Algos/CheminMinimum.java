@@ -8,23 +8,30 @@ public class CheminMinimum {
 	private LinkedList<Integer> NodeList = new LinkedList<Integer>();
 
 
-	public void updateList(CheminMinimum nouveauChemin, int sommetArrive) {
+	public void updateList(CheminMinimum nouveauChemin, int endNode) {
 		
+		//efface le chemin mini existant
 		NodeList.clear();
+		//Nouvelle liste de chemin
 		LinkedList<Integer> newList = nouveauChemin.getNodeList();
+		//Création d'un iterator pour boucler
 		ListIterator<Integer> it = newList.listIterator();
 		while(it.hasNext()){
+			//Ajoute toute la liste au chemin
 			NodeList.addLast(it.next());
+			
 		}
-		NodeList.addLast(sommetArrive);
+		//Ajoute le sommet d'arriver au chemin
+		NodeList.addLast(endNode);
 	}
 
-	public void addNodeToEnd(int sommetDep) {
-		NodeList.addLast(sommetDep);
+	//Ajoute le noeud à la fin
+	public void addNodeToEnd(int startNode) {
+		NodeList.addLast(startNode);
 	}
-	
-	public void addNodeToFirst(int sommetDep) {
-		NodeList.addFirst(sommetDep);
+	//Ajoute le noeud au début
+	public void addNodeToFirst(int startNode) {
+		NodeList.addFirst(startNode);
 	}
 	
 	public LinkedList<Integer> getNodeList(){

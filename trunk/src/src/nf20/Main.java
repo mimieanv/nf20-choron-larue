@@ -118,7 +118,8 @@ public class Main {
 		 */
 		//graphe = Graph.getInstance();
 		dijkstra = new Dijkstra(0,Graph.getInstance());
-		dijkstra.algoWikipedia();
+		dijkstra.calculerDijkstra();
+		dijkstra.afficher();
 		
 		/*
 		 * TEST BELLMAN

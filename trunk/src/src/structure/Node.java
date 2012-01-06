@@ -8,6 +8,9 @@ public class Node {
 	// Variables utilisees par Dijkstra
 	private int parcouru;
 	private Node precedent;
+	private boolean haveConstraint = false;
+	private boolean tacheFin = true;
+	private int duree;
 	
 	public Node(int _number) {
 		number = _number;
@@ -98,5 +101,30 @@ public class Node {
 	public void setPrecedent(Node _precedent) {
 		this.precedent = _precedent;
 	}
+	//Pour L'ordonnencement
+	public int getDuree() {
+		return duree;
+	}
+	//Pour L'ordonnencement
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	public boolean haveConstraint() {
+		return haveConstraint;
+	}
+
+	public void setHaveConstraint(boolean haveConstraint) {
+		this.haveConstraint = haveConstraint;
+	}
+
+	public boolean isTacheFin() {
+		return tacheFin;
+	}
+
+	public void setTacheFin(boolean tacheFin) {
+		this.tacheFin = tacheFin;
+	}
+	
 	
 }

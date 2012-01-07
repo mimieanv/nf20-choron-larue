@@ -3,13 +3,13 @@ package Algos;
 import structure.Arc;
 import structure.Graph;
 
-public class Ordonnencement {
+public class Ordonnancement {
 	private int startNode;
 	private Graph graphe;
 	private CoutMinimumBellman[] tabMaxiCost;
 	private CheminMinimum[] tabCheminMaxi;
 	
-	public Ordonnencement(Graph graphe) {
+	public Ordonnancement(Graph graphe) {
 		this.startNode = 0;
 		this.graphe = graphe;
 		//initialisation du tableau pour les couts minimums à une taille égale au nombre de noeuds

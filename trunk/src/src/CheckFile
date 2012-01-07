@@ -16,3 +16,10 @@ kevin (28/12, 18h05)
 Kevin (06/01/12 23h49)
 	Ordonnencement OK
 	commentaire OK
+	
+Kevin (07/01/2012 11h51)
+	Code OK
+	Temps d'éxécution OK
+	Test de mon coté OK
+	-> Correction du bug des couts négatif pour dijkstra
+	-> fin de ligne on ne met plus un - met un -f sinon bug pour la lecture des cout négatif
